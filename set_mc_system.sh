@@ -71,13 +71,13 @@ fi
 # Download proper file and set ownership
 if [[ $choice == 'papermc' ]]
 then
-  wget https://api.papermc.io/v2/projects/paper/versions/1.19.2/builds/131/downloads/paper-1.19.2-131.jar -P $server_dir/paper-1.19.2-131.jar
+  wget https://api.papermc.io/v2/projects/paper/versions/1.19.2/builds/131/downloads/paper-1.19.2-131.jar -P $server_dir
   chown minecraft: $server_dir/paper-1.19.2-131.jar
   
 elif [[ $choice == 'velocity' ]]
 then
-  wget https://api.papermc.io/v2/projects/velocity/versions/3.1.2-SNAPSHOT/builds/175/downloads/velocity-3.1.2-SNAPSHOT-175.jar -P $server_dir/velocity-3.1.2-175.jar
-  chown minecraft: $server_dir/velocity-3.1.2-175.jar
+  wget https://api.papermc.io/v2/projects/velocity/versions/3.1.2-SNAPSHOT/builds/175/downloads/velocity-3.1.2-SNAPSHOT-175.jar -P $server_dir
+  chown minecraft: $server_dir/velocity-3.1.2-SNAPSHOT-175.jar
 
 fi
 
