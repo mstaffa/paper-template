@@ -12,8 +12,8 @@ read choice
 printf 'Do you want to auto-start the selected service? yes / [no]: '
 read autostart
 
-choice=$(echo "$choice" | tr '[:upper:]' '[:lower:]')
-autostart=$(echo "$autostart" | tr '[:upper:]' '[:lower:]')
+choice="$(echo $choice | tr '[:upper:]' '[:lower:]')"
+autostart="$(echo $autostart | tr '[:upper:]' '[:lower:]')"
 
 user_dir='/opt/minecraft'
 
@@ -47,7 +47,7 @@ echo "-----------------------------------------"
 echo "- Create /opt if it doesn't exit        -"
 echo "-----------------------------------------"
 
-if [[ ! -d /opt ]] then; mkdir /opt; fi
+if [[ ! -d /opt ]]; then mkdir /opt; fi
 
 echo "-----------------------------------------"
 echo "- Add minecraft user and configure home -"
@@ -61,8 +61,11 @@ echo "- Generate server directory and pull jar-"
 echo "-----------------------------------------"
 
 # Create base server directory and set ownership
-mkdir $server_dir
-chown minecraft: $server_dir
+if [[ ! -d $server_dir ]]
+then
+  mkdir $server_dir
+  chown minecraft: $server_dir
+fi
 
 # Download proper file and set ownership
 if [[ $choice == 'papermc' ]]
@@ -85,7 +88,7 @@ then
   echo "-----------------------------------------"
 
   touch $server_dir/eula.txt
-  cat <<EOF
+  cat <<EOF >> $server_dir/eula.txt
 #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
 #$(date)
 eula=true
@@ -116,7 +119,7 @@ then
 fi
 
 echo "-----------------------------------------"
-echo "- Curl unit file into systemd/system    -"
+echo "- Copy unit file into systemd/system    -"
 echo "-----------------------------------------"
 
 cp ./$unit_name /etc/systemd/system/
