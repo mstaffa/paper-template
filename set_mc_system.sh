@@ -25,7 +25,7 @@ then
 elif [[ $choice == 'velocity' ]]
 then
   unit_name='velocity@.service'
-  server_dir="$user_dir/velocity-proxy
+  server_dir="$user_dir/velocity-proxy"
 
 else
   echo "Invalid option '$choice'"
