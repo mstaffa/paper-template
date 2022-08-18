@@ -41,6 +41,7 @@ echo "-----------------------------------------"
 echo "- Installing prerequisite packages      -"
 echo "-----------------------------------------"
 
+apt-get update
 apt-get install -y openjdk-17-jre-headless curl screen nano bash grep
 
 echo "-----------------------------------------"
